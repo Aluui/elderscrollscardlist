@@ -19,16 +19,20 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CardEffects } from './state/card.effects';
 import { cardReducer } from './state/card.reducer';
 import { SingleCardComponent } from './single-card/single-card.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HomeComponent, CardListComponent, SingleCardComponent],
   imports: [
     CommonModule,
+    FormsModule,
     HomeRoutingModule,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
     MatIconModule,
+    MatToolbarModule,
     MatButtonModule,
     LayoutModule,
     ScrollingModule,

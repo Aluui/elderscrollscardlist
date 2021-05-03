@@ -21,3 +21,19 @@
 .card-body {
   margin-top: 1rem;
 }
+
+.filter-section {
+  justify-content: flex-end;
+
+  span.list-size {
+    margin-right: 0.5rem;
+  }
+}
+
+.button-controls {
+  padding: 0.5rem;
+
+  > button:first-child {
+    margin-right: 0.5rem;
+  }
+}

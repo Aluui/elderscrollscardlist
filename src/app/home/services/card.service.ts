@@ -5,6 +5,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Card } from '../models/card';
 import { environment } from 'src/environments/environment';
+import { CardRequest } from '../models/card-request';
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +15,26 @@ export class CardService {
 
   constructor(private http: HttpClient) {}
 
-  getCards(): Observable<Card[]> {
-    return this.http.get<any>(this.cardsUrl).pipe(
-      tap((data) => console.log(JSON.stringify(data.cards))),
-      map((data) => data.cards as Card[]),
+  getCards(): Observable<CardRequest> {
+    return this.http.get<CardRequest>(this.cardsUrl).pipe(
+      tap((data) => console.log(JSON.stringify(data))),
+      // map((data) => data.cards as Card[]),
+      catchError(this.handleError)
+    );
+  }
+
+  getPreviousCardBatch(previousUrlString: string): Observable<CardRequest> {
+    return this.http.get<CardRequest>(previousUrlString).pipe(
+      tap((data) => console.log(JSON.stringify(data))),
+      // map((data) => data.cards as Card[]),
+      catchError(this.handleError)
+    );
+  }
+
+  getNextCardBatch(nextUrlString: string): Observable<CardRequest> {
+    return this.http.get<CardRequest>(nextUrlString).pipe(
+      tap((data) => console.log(JSON.stringify(data))),
+      // map((data) => data.cards as Card[]),
       catchError(this.handleError)
     );
   }

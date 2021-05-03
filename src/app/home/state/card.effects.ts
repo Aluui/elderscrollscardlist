@@ -17,7 +17,31 @@ export class CardEffects {
       ofType(CardActions.loadCards),
       mergeMap(() =>
         this.cardService.getCards().pipe(
-          map((cards) => CardActions.loadCardsSuccess({ cards })),
+          map((cardsRequest) => CardActions.loadCardsSuccess({ cardsRequest })),
+          catchError((error) => of(CardActions.loadCardsFailure({ error })))
+        )
+      )
+    );
+  });
+
+  loadPreviousCardBatch$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CardActions.loadPreviousCardBatch),
+      mergeMap((action) =>
+        this.cardService.getPreviousCardBatch(action.previousBatchUrl).pipe(
+          map((cardsRequest) => CardActions.loadCardsSuccess({ cardsRequest })),
+          catchError((error) => of(CardActions.loadCardsFailure({ error })))
+        )
+      )
+    );
+  });
+
+  loadNextCardBatch$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CardActions.loadNextCardBatch),
+      mergeMap((action) =>
+        this.cardService.getNextCardBatch(action.nextBatchUrl).pipe(
+          map((cardsRequest) => CardActions.loadCardsSuccess({ cardsRequest })),
           catchError((error) => of(CardActions.loadCardsFailure({ error })))
         )
       )

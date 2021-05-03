@@ -8,6 +8,7 @@ import {
 import * as CardActions from './card.actions';
 import * as AppState from '../../state/app.state';
 import { Card } from '../models/card';
+import { CardRequest } from '../models/card-request';
 
 // Extends the app state to include the card feature.
 // This is required because cards are lazy loaded.
@@ -19,13 +20,13 @@ export interface State extends AppState.State {
 // State for this feature (Card)
 export interface CardState {
   filterCardString: string;
-  cards: Card[];
+  cardsRequest: CardRequest;
   error: string;
 }
 
 const initialState: CardState = {
   filterCardString: '',
-  cards: [],
+  cardsRequest: { cards: [] },
   error: '',
 };
 
@@ -42,13 +43,23 @@ const getCardFeatureState = createFeatureSelector<CardState>('cards');
 //   state => state.currentCard
 // );
 
-export const getCards = createSelector(
+export const getFilterString = createSelector(
   getCardFeatureState,
-  (state) => state.cards
+  (state) => state.filterCardString
 );
 
+export const getCardRequest = createSelector(
+  getCardFeatureState,
+  (state) => state.cardsRequest
+);
+
+// export const getCards = createSelector(
+//   getCardFeatureState,
+//   (state) => state.cards
+// );
+
 export const filterCards = createSelector(getCardFeatureState, (state) =>
-  state.cards.filter((c) =>
+  state.cardsRequest.cards.filter((c) =>
     c.name.toLowerCase().includes(state.filterCardString.toLowerCase())
   )
 );
@@ -74,7 +85,7 @@ export const cardReducer = createReducer<CardState>(
     (state, action): CardState => {
       return {
         ...state,
-        cards: action.cards,
+        cardsRequest: action.cardsRequest,
         error: '',
       };
     }
@@ -84,7 +95,7 @@ export const cardReducer = createReducer<CardState>(
     (state, action): CardState => {
       return {
         ...state,
-        cards: [],
+        cardsRequest: { cards: [] },
         error: action.error,
       };
     }

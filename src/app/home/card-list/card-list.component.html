@@ -1,11 +1,45 @@
 <div class="card">
   <div class="card-body" *ngIf="filteredCards$ | async as cards; else noCards">
+    <mat-toolbar class="filter-section">
+      <span class="list-size"
+        >{{ cards.length }}
+        <span *ngIf="cardRequest$ | async as req">
+          / {{ req?._totalCount }}
+        </span>
+      </span>
+      <input
+        type="text"
+        matInput
+        [ngModel]="cardFilterString$ | async"
+        (ngModelChange)="filterStringChanged($event)"
+      />
+    </mat-toolbar>
+
     <div class="list-group">
       <cdk-virtual-scroll-viewport [itemSize]="20" class="example-viewport">
         <div *cdkVirtualFor="let card of cards" class="example-item">
           <app-single-card [card]="card"></app-single-card>
         </div>
       </cdk-virtual-scroll-viewport>
+
+      <div *ngIf="cardRequest$ | async as req" class="button-controls">
+        <button
+          color="primary"
+          *ngIf="req?._links?.prev"
+          mat-raised-button
+          (click)="loadPreviousCardBatch(req?._links?.prev)"
+        >
+          Previous
+        </button>
+        <button
+          color="primary"
+          *ngIf="req?._links?.next"
+          mat-raised-button
+          (click)="loadNextCardBatch(req?._links?.next)"
+        >
+          Next
+        </button>
+      </div>
       <!-- <button class="list-group-item list-group-item-action rounded-0"
               *ngFor="let card of cards"
               [ngClass]="{'active': card?.id === (selectedProduct$ | async)?.id}"
