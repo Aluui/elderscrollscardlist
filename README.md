@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
 
+# To launch the application locally
+
+1. Run 'npm i' in a command line window
+2. Run 'ng s -o' to start and launch the application in a browser
+3. Click on the 'Cards List' menu option to get to the main assessment page.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
