@@ -15,8 +15,9 @@ export class CardService {
   constructor(private http: HttpClient) {}
 
   getCards(): Observable<Card[]> {
-    return this.http.get<Card[]>(this.cardsUrl).pipe(
-      tap((data) => console.log(JSON.stringify(data))),
+    return this.http.get<any>(this.cardsUrl).pipe(
+      tap((data) => console.log(JSON.stringify(data.cards))),
+      map((data) => data.cards as Card[]),
       catchError(this.handleError)
     );
   }

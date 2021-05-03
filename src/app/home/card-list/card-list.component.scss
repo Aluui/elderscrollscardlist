@@ -1,0 +1,15 @@
+.example-viewport {
+  height: 500px;
+  width: 100%;
+  border: 1px solid black;
+}
+
+// :host ::ng-deep {
+//   .example-viewport > div.cdk-virtual-scroll-content-wrapper {
+//   }
+// }
+
+.example-item {
+  width: 15%;
+  display: inline-block;
+}

@@ -17,6 +17,7 @@ import * as fromHome from './reducers';
 import { CardListComponent } from './card-list/card-list.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CardEffects } from './state/card.effects';
+import { cardReducer } from './state/card.reducer';
 
 @NgModule({
   declarations: [HomeComponent, CardListComponent],
@@ -31,9 +32,7 @@ import { CardEffects } from './state/card.effects';
     LayoutModule,
     ScrollingModule,
     EffectsModule.forFeature([CardEffects]),
-    StoreModule.forFeature(fromHome.homeFeatureKey, fromHome.reducers, {
-      metaReducers: fromHome.metaReducers,
-    }),
+    StoreModule.forFeature('cards', cardReducer),
   ],
 })
 export class HomeModule {}

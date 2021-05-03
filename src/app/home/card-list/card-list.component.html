@@ -3,9 +3,9 @@
     {{ pageTitle }}
   </div>
 
-  <div class="card-body" *ngIf="cards$ | async as cards">
+  <div class="card-body" *ngIf="cards$ | async as cards; else noCards">
     <div class="list-group">
-      <cdk-virtual-scroll-viewport class="example-viewport">
+      <cdk-virtual-scroll-viewport [itemSize]="20" class="example-viewport">
         <div *cdkVirtualFor="let item of cards" class="example-item">
           {{ item.name }}
         </div>
@@ -20,6 +20,8 @@
       </button> -->
     </div>
   </div>
+
+  <ng-template #noCards> There are no cards in the list </ng-template>
 
   <!-- <div class="card-footer">
     <div class="row">
