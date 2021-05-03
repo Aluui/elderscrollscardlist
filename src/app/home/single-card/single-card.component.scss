@@ -1,0 +1,37 @@
+.single-card {
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+
+  > .top-card-section {
+    background-color: lightgrey;
+    border-bottom: 1px solid;
+    // padding: 0.3rem;
+
+    > .card-name {
+      font-weight: bold;
+    }
+
+    > .card-text {
+      display: inline-block;
+    }
+
+    > .card-name,
+    > .card-text {
+      padding: 0.7rem;
+    }
+  }
+
+  > .mid-card-section {
+    padding: 0.3rem;
+    border-bottom: 1px solid;
+  }
+
+  > .end-card-section {
+    padding: 0.3rem;
+  }
+
+  .card-image {
+    width: 100%;
+  }
+}

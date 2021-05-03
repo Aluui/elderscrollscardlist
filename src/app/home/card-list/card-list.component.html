@@ -1,13 +1,9 @@
 <div class="card">
-  <div class="card-header">
-    {{ pageTitle }}
-  </div>
-
-  <div class="card-body" *ngIf="cards$ | async as cards; else noCards">
+  <div class="card-body" *ngIf="filteredCards$ | async as cards; else noCards">
     <div class="list-group">
       <cdk-virtual-scroll-viewport [itemSize]="20" class="example-viewport">
-        <div *cdkVirtualFor="let item of cards" class="example-item">
-          {{ item.name }}
+        <div *cdkVirtualFor="let card of cards" class="example-item">
+          <app-single-card [card]="card"></app-single-card>
         </div>
       </cdk-virtual-scroll-viewport>
       <!-- <button class="list-group-item list-group-item-action rounded-0"

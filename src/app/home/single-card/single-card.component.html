@@ -1,0 +1,16 @@
+<div class="single-card">
+  <section class="top-card-section">
+    <img [src]="card.imageUrl" [alt]="card.name" class="card-image" />
+
+    <header class="card-name">{{ card.name }}</header>
+    <span class="card-text">{{ card.text }}</span>
+  </section>
+
+  <section class="mid-card-section">
+    {{ card.type }}
+  </section>
+
+  <section class="end-card-section">
+    <header>{{ card.set?.name }}</header>
+  </section>
+</div>

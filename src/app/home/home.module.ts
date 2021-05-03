@@ -18,9 +18,10 @@ import { CardListComponent } from './card-list/card-list.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CardEffects } from './state/card.effects';
 import { cardReducer } from './state/card.reducer';
+import { SingleCardComponent } from './single-card/single-card.component';
 
 @NgModule({
-  declarations: [HomeComponent, CardListComponent],
+  declarations: [HomeComponent, CardListComponent, SingleCardComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
