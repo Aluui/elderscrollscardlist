@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+
+  <div class="card-body" *ngIf="cards$ | async as cards">
+    <div class="list-group">
+      <cdk-virtual-scroll-viewport class="example-viewport">
+        <div *cdkVirtualFor="let item of cards" class="example-item">
+          {{ item.name }}
+        </div>
+      </cdk-virtual-scroll-viewport>
+      <!-- <button class="list-group-item list-group-item-action rounded-0"
+              *ngFor="let card of cards"
+              [ngClass]="{'active': card?.id === (selectedProduct$ | async)?.id}"
+              (click)="cardSelected(card)">{{ card.cardName }}
+        <ng-container *ngIf="displayCode$ | async">
+          ({{ card.cardCode }})
+        </ng-container>
+      </button> -->
+    </div>
+  </div>
+
+  <!-- <div class="card-footer">
+    <div class="row">
+      <div class="form-check col-md-7">
+        <label>
+          <input class="form-check-input"
+                 type="checkbox"
+                 (change)="checkChanged()"
+                 [checked]="displayCode$ | async">
+          Display Product Code
+        </label>
+      </div>
+      <div class="col-md-4 text-right">
+        <button class="btn btn-primary"
+                (click)="newProduct()">
+          Add
+        </button>
+      </div>
+    </div>
+  </div> -->
+</div>
+<div *ngIf="errorMessage$ | async as errorMessage" class="alert alert-danger">
+  Error: {{ errorMessage }}
+</div>

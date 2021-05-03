@@ -1,0 +1,22 @@
+.width-50 {
+  width: 50%;
+}
+
+.menu-links > a {
+  display: inline-flex;
+  align-content: center;
+  text-decoration: none;
+  margin-right: 1rem;
+
+  &:not(:first-child) {
+    margin-left: 1rem;
+  }
+
+  > mat-icon {
+    margin-right: 0.3rem;
+  }
+}
+
+.container {
+  padding: 0 0.5rem;
+}
